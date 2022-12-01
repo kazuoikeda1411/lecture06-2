@@ -5,8 +5,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
 @RestController
@@ -17,9 +15,8 @@ public class HelloWorld {
 	}
 	@GetMapping ("/time")
 	private String getTime() {
-		DateTimeFormatter nowTokyo = DateTimeFormatter.ofPattern("yyyy/MM/dd HH時mm分ss秒");
-		ZonedDateTime.now(ZoneId.of("Asia/Tokyo"));
-		String todayDate = LocalDateTime.now().format(nowTokyo);
+		DateTimeFormatter dateTimeFormatterOfTokyo = DateTimeFormatter.ofPattern("yyyy/MM/dd HH時mm分ss秒");
+		String todayDate = LocalDateTime.now().format(dateTimeFormatterOfTokyo);
 		return String.format("現在の東京の日時は %s です。", todayDate);
 	}
 }
